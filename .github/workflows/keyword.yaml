@@ -1,0 +1,26 @@
+name: keyword
+on:
+  issues:
+    types: [opened]
+
+jobs:
+  get-keyword:
+    runs-on: ubuntu-latest
+    outputs:
+      keyword: ${{ steps.get-keyword.outputs.keyword}}
+    steps:
+      - name: github
+        uses: action/checkout@4
+      - name: keyword-select
+        id: get-keyword
+        run: |
+          keywords = $(cat keyword-list.txt)
+          for i in $keywords; do
+            if [[${{ github.event.issue.title }} =~ $i]]; then
+              echo keyword=$i >> $GITHUB_OUTPUT
+            fi
+          done
+      - name: get output
+        run: |
+          echo ${{ step.keyword.outpus.keyword }}
+
