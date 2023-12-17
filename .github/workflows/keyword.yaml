@@ -22,5 +22,5 @@ jobs:
           done
       - name: get output
         run: |
-          echo ${{ step.keyword.outpus.keyword }}
+          echo ${{ steps.keyword.outpus.keyword }}
 
