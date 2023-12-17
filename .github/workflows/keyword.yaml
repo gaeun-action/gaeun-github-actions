@@ -10,14 +10,14 @@ jobs:
       keyword: ${{ steps.get-keyword.outputs.keyword }}
     steps:
     - name: github
-      uses: actions/checkout@4
+      uses: actions/checkout@v4
     - name: keyword-select
       id: get-keyword
       run: |
         echo keyword=Undefined >> $GITHUB_OUTPUT
         keywords = $(cat keyword-list.txt)
         for i in $keywords; do
-          if [[${{ github.event.issue.title }} =~ $i]]; then
+          if [[ "${{ github.event.issue.title }}" =~ "$i" ]]; then
             echo keyword=$i >> $GITHUB_OUTPUT
           fi
         done
