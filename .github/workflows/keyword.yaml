@@ -9,21 +9,21 @@ jobs:
     outputs:
       keyword: ${{ steps.get-keyword.outputs.keyword}}
     steps:
-      - name: github
-        uses: action/checkout@4
-        with:
-          token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
-      - name: keyword-select
-        id: get-keyword
-        run: |
-          echo keyword=Undefined >> $GITHUB_OUTPUT
-          keywords = $(cat keyword-list.txt)
-          for i in $keywords; do
-            if [[${{ github.event.issue.title }} =~ $i]]; then
-              echo keyword=$i >> $GITHUB_OUTPUT
-            fi
-          done
-      - name: get output
-        run: |
-          echo ${{ steps.keyword.outpus.keyword }}
+    - name: github
+      uses: action/checkout@3
+      with:
+        token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+    - name: keyword-select
+      id: get-keyword
+      run: |
+        echo keyword=Undefined >> $GITHUB_OUTPUT
+        keywords = $(cat keyword-list.txt)
+        for i in $keywords; do
+          if [[${{ github.event.issue.title }} =~ $i]]; then
+            echo keyword=$i >> $GITHUB_OUTPUT
+          fi
+        done
+    - name: get output
+      run: |
+        echo ${{ steps.keyword.outpus.keyword }}
 
