@@ -26,7 +26,7 @@ jobs:
     - name: repo-create
       id: repo-create
       run: |  
-        gh repo create gaeun-github/${{ inputs.prefix }}-${{ inputs.name }} --public --add-readme
+        gh repo create gaeun-githubs/${{ inputs.prefix }}-${{ inputs.name }} --public --add-readme
 
 
     # - name: slack-alert
