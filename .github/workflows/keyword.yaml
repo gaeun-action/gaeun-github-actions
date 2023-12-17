@@ -10,7 +10,7 @@ jobs:
       keyword: ${{ steps.get-keyword.outputs.keyword }}
     steps:
     - name: github
-      uses: action/checkout@4
+      uses: actions/checkout@4
     - name: keyword-select
       id: get-keyword
       run: |
