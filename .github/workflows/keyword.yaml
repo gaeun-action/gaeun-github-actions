@@ -1,4 +1,5 @@
-name: keyword
+name: issue-notify
+
 on:
   issues:
     types: [opened]
@@ -7,21 +8,21 @@ jobs:
   get-keyword:
     runs-on: ubuntu-latest
     outputs:
-      keyword: ${{ steps.get-keyword.outputs.keyword}}
+      level: ${{ steps.get-keyword.outputs.level }}
     steps:
-    - name: github
-      uses: action/checkout@3
-    - name: keyword-select
+    - name: checkout 
+      uses: actions/checkout@v4
+    - name: get keyword
       id: get-keyword
       run: |
-        echo keyword=Undefined >> $GITHUB_OUTPUT
-        keywords = $(cat keyword-list.txt)
-        for i in $keywords; do
-          if [[${{ github.event.issue.title }} =~ $i]]; then
-            echo keyword=$i >> $GITHUB_OUTPUT
+        echo level=Undefined >> $GITHUB_OUTPUT
+        
+        keywords=$(cat keyword-list.txt)
+        for keyword in $keywords; do
+          if [[ "${{ github.event.issue.title }}" =~ "$keyword" ]]; then
+            echo level=$keyword >> $GITHUB_OUTPUT
           fi
         done
     - name: get output
       run: |
-        echo ${{ steps.keyword.outpus.keyword }}
-
+        echo ${{ steps.get-keyword.outputs.level }}
