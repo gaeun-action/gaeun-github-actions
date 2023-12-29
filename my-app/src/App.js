@@ -15,7 +15,7 @@ function App() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          Learn Githubactions 5
+          Learn Githubactions 6
         </a>
       </header>
     </div>
