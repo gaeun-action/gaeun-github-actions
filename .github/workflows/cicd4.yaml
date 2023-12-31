@@ -184,7 +184,7 @@ jobs:
 
   prod-deploy:
     runs-on: ubuntu-latest
-    neess: [ approve ]
+    needs: [approve]
     permissions:
       id-token: write
       contents: read
