@@ -15,7 +15,7 @@ function App() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          Learn Githubactions cicd4-aws
+          Learn Githubactions cicd6-aws
         </a>
       </header>
     </div>
